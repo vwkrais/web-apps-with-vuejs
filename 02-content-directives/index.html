@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task - From static HTML to a Vue Instance </title>
+    <title>Task - Content directives</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -14,24 +14,23 @@
         <section class="header__section">
             <p class="header__task-name">💻 Coding Task</p>
             <p class="header__bootcamp-info-wrapper">
-                <span class="header__bootcamp-modul"><strong>Modul:</strong> Web Apps with Vue.js - Part 1</span>
+                <span class="header__bootcamp-modul"><strong>Modul:</strong> Web Apps with Vue.js - Part 2</span>
                 <a href="https://www.coding-bootcamps.eu/" class="header__bootcamp-link">coding-bootcamps.eu</a>
             </p>
         </section>
     </header>
     <main>
-        <div class="inside">
-            <div class="card" id="app">
-                <h2>Welcome back <strong>{{username}}</strong>!</h2>
-                <p>
-                    You logged in on {{date}}<br />
-                    We wish you a pleasant day.
-                </p>
-            </div>
+        <div id="app" class="inside">
+            <h2 v-once v-text="'Directives for Vue ' + vueVersion">
+                Directives for Vue {{ vueVersion }}
+            </h2>
+            <div class="intro" v-html="text"></div>
+            <p v-pre>
+                Sometimes v-text is better than' {{ 'Some text' }} 'or {{myDataProperty}}
+            </p>
         </div>
     </main>
-    <script src="https://unpkg.com/vue@next">
-    </script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="script.js"></script>
 </body>
 
