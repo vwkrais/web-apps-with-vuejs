@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>book list rendered in table -vue</title>
+    <title>Book list 20% rebate - computed and methods</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -21,18 +21,30 @@
     </header>
     <main>
         <div id="app" class="inside">
-            <h1>My Books</h1>
+            <h1>20% off on all books from O'Reilly Media</h1>
             <table>
                 <thead>
                     <tr>
-                        <th v-for="key of Object.keys(books[1])" key="isbn">{{key}}</th>
+                        <th v-for="header of validTableHeaders" :key="header">
+                            {{header}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="book in books" key="book">
-                        <td v-for="value of Object.values(book)">{{value}}</td>
+                    <tr v-for="book of filteredBooks" :key="book.id">
+                        <template v-for="header in validTableHeaders" :key="header">
+                            <td v-if="Object.keys(book).includes(header)">{{ book[header]}}</td>
+                        </template>
                     </tr>
                 </tbody>
+                <!-- { title, isbn, author, publisher, price, numPages } of filteredBooks" :key="isbn">
+                        <td>{{ title }}</td>
+                        <td>{{ isbn }}</td>
+                        <td>{{ author }}</td>
+                        <td>{{ publisher }}</td>
+                        <td><span class="strike">{{ price }}</span></td>
+                        <td>{{ numPages }}</td> -->
+
             </table>
         </div>
     </main>
